@@ -38,8 +38,9 @@ class StockLocation(models.Model):
             location.strategy_sequence = sequence
             processed |= location
         remaining_locations = self - processed
+        max_seq = len(res)
         for remaining in remaining_locations:
-            remaining.strategy_sequence = 1000
+            remaining.strategy_sequence =  max_seq
 
     @api.onchange('location_id')
     def _onchange_parent_location(self):
